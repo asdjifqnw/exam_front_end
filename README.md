@@ -1,4 +1,8 @@
-# keshe-front-end
+# 在线监考系统前端页面
+
+### 2019.5.29
+完成用户模块  
+其他详细信息后续再补充
 
 ## Project setup
 ```
@@ -24,6 +28,3 @@ yarn run test
 ```
 yarn run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
