@@ -16,11 +16,11 @@
         <el-submenu index="2">
           <template slot="title">
             <i class="el-icon-location"></i>
-            <span>监考信息管理</span>
+            <span>考试信息管理</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item index="2-1">新增监考信息</el-menu-item>
-            <el-menu-item index="2-2">列出所有监考</el-menu-item>
+            <el-menu-item index="2-1" @click="addIvg">新增考试信息</el-menu-item>
+            <el-menu-item index="2-2" @click="listIvgs">列出所有考试</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
         <el-submenu index="3">
@@ -29,7 +29,7 @@
             <span>监考分配管理</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item index="3-1">分配监考</el-menu-item>
+            <el-menu-item index="3-1" @click="setUserIvg">分配监考</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
         <el-submenu index="4">
@@ -55,6 +55,15 @@ export default {
     },
     listUsers(){
       this.$router.push("/listUsers")
+    },
+    addIvg(){
+      this.$router.push("/addIvg")
+    },
+    listIvgs(){
+      this.$router.push("/listIvgs")
+    },
+    setUserIvg(){
+      this.$router.push("/setUserIvg")
     }
   }
 };

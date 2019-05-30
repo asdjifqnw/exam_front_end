@@ -16,6 +16,21 @@ export default new Router({
       name: 'listUsers',
       component: ()=> import('../pages/main/components/listUsers.vue')
     },
+    {
+      path: '/addIvg',
+      name: 'addIvg',
+      component: ()=> import('../pages/main/components/addIvg.vue')
+    },
+    {
+      path: '/listIvgs',
+      name: 'listIvgs',
+      component: ()=> import('../pages/main/components/listIvgs.vue')
+    },
+    {
+      path: '/setUserIvg',
+      name: 'setUserIvg',
+      component: ()=> import('../pages/main/components/setUserIvg.vue')
+    },
     // {
     //   path: '/about',
     //   name: 'about',
