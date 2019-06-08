@@ -60,7 +60,7 @@ export default {
         });
     },
     durationFormatter(row) {
-      return row.duration.substring(3);
+      return row.duration.substring(0,5);
     },
     locationFormatter(row) {
       switch (row.location) {

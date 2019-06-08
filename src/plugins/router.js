@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+// import addUser from '../pages/main/components/add'
 
 Vue.use(Router)
 export default new Router({
@@ -30,6 +31,16 @@ export default new Router({
       path: '/setUserIvg',
       name: 'setUserIvg',
       component: ()=> import('../pages/main/components/setUserIvg.vue')
+    },
+    {
+      path: '/addTask',
+      name: 'addTask',
+      component: ()=> import('../pages/main/components/addTask.vue')
+    },
+    {
+      path: '/listTasks',
+      name: 'listTasks',
+      component: ()=> import('../pages/main/components/listTasks.vue')
     },
     // {
     //   path: '/about',

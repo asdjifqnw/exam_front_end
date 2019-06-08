@@ -38,7 +38,7 @@ module.exports = {
       // 跨域请求相对路径，当以根路径发出请求，执行以下配置
       "/api": {
         // 目标地址，即开发测试时后端主机地址
-        target: "http://74.121.149.107:8082/",
+        target: "http://localhost:8082/",
         // 修改请求header中来源为目标主机地址，实现跨域
         changeOrigin: true,
         // pathRewrite: {
