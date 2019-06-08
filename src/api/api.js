@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from '../plugins/axios'
 let base = "/api"
 export const login = params => { return axios.post(`${base}/login`, params).then(res => res.data) }
 export const addUser = params => { return axios.post(`${base}/admin/user`, params).then(res => res.data) }
@@ -18,3 +18,5 @@ export const modifyTaskInfo = params => { return axios.patch(`${base}/admin/task
 export const getTasks = () => { return axios.get(`${base}/tasks`).then(res => res.data) }
 export const removeTask = params => { return axios.delete(`${base}/admin/task/${params.id}`).then(res => res.data) }
 export const closeTask = params => { return axios.get(`${base}/admin/task/${params.id}/close`).then(res => res.data) }
+export const modifyMyInfo = params => { return axios.patch(`${base}/user/${params.id}/modidfyUserInfo`,params).then(res => res.data) }
+export const getMyInfo = () => { return axios.get(`${base}/me`).then(res => res.data) }

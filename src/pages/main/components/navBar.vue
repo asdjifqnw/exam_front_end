@@ -8,14 +8,14 @@
         <span class="title">考试管理系统</span>
       </el-col>
       <el-col :lg="2" :offset="6">
-        <el-dropdown class="dropdown">
+        <el-dropdown class="dropdown" @command="handleCommand">
           <span class="el-dropdown-link">
             下拉菜单
             <i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>修改个人信息</el-dropdown-item>
-            <el-dropdown-item>退出</el-dropdown-item>
+            <el-dropdown-item command="a">修改个人信息</el-dropdown-item>
+            <el-dropdown-item command="logout">退出</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </el-col>
@@ -24,15 +24,25 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    handleCommand(command) {
+      switch (command) {
+        case "logout":
+          this.$store.commit("logout");
+          window.location.href = "./login.html";
+      }
+    }
+  }
+};
 </script>
 
 <style scoped>
-.title{
-    font-size: 2rem;
-    margin-left: 25%;
+.title {
+  font-size: 2rem;
+  margin-left: 25%;
 }
-.dropdown{
-    margin-top: 1rem;
+.dropdown {
+  margin-top: 1rem;
 }
 </style>

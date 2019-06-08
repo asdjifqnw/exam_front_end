@@ -42,6 +42,11 @@ export default new Router({
       name: 'listTasks',
       component: ()=> import('../pages/main/components/listTasks.vue')
     },
+    {
+      path: '/modifyMyInfo',
+      name: 'modifyMyInfo',
+      component: ()=> import('../pages/main/components/modifyMyInfo.vue')
+    },
     // {
     //   path: '/about',
     //   name: 'about',

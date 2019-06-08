@@ -41,9 +41,9 @@ module.exports = {
         target: "http://localhost:8082/",
         // 修改请求header中来源为目标主机地址，实现跨域
         changeOrigin: true,
-        // pathRewrite: {
-        //   "^/api": ""
-        // }
+        pathRewrite: {
+          "^/api": ""
+        }
       }
     }
   },

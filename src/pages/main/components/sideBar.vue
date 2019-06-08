@@ -51,7 +51,7 @@
             <span>个人信息管理</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item index="5-1" @click="addTask">修改个人信息</el-menu-item>
+            <el-menu-item index="5-1" @click="modifyMyInfo">修改个人信息</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
         <el-submenu index="6">
@@ -101,6 +101,9 @@ export default {
     },
     listTasks() {
       this.$router.push("/listTasks");
+    },
+    modifyMyInfo(){
+      this.$router.push("/modifyMyInfo");
     }
   }
 };
