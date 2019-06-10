@@ -60,8 +60,8 @@
             <span>监考信息管理</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item index="6-1" @click="addTask">查看我的监考信息</el-menu-item>
-            <el-menu-item index="6-2" @click="listTasks">查看所有监考信息</el-menu-item>
+            <el-menu-item index="6-1" @click="checkMyIvgInfo">查看我的监考信息</el-menu-item>
+            <el-menu-item index="6-2" @click="setUserIvg">查看所有监考信息</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
         <el-submenu index="7">
@@ -70,7 +70,7 @@
             <span>任务信息管理</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item index="7-1" @click="addTask">查看任务信息</el-menu-item>
+            <el-menu-item index="7-1" @click="listTasks">查看任务信息</el-menu-item>
             <el-menu-item index="6-2" @click="listTasks">查看完成情况</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
@@ -102,8 +102,14 @@ export default {
     listTasks() {
       this.$router.push("/listTasks");
     },
-    modifyMyInfo(){
+    modifyMyInfo() {
       this.$router.push("/modifyMyInfo");
+    },
+    checkMyIvgInfo() {
+      this.$router.push("/checkMyIvgInfo");
+    },
+    checkTaskInfo(){
+
     }
   }
 };

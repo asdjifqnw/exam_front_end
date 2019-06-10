@@ -23,7 +23,7 @@ import { removeIvg } from "../../../api/api";
 export default {
   data() {
     return {
-      ivgs: []
+      ivgs: [],
     };
   },
   created() {
@@ -60,7 +60,7 @@ export default {
         });
     },
     durationFormatter(row) {
-      return row.duration.substring(0,5);
+      return row.duration.substring(0, 5);
     },
     locationFormatter(row) {
       switch (row.location) {

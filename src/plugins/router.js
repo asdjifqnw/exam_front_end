@@ -47,6 +47,17 @@ export default new Router({
       name: 'modifyMyInfo',
       component: ()=> import('../pages/main/components/modifyMyInfo.vue')
     },
+    {
+      path: '/checkMyIvgInfo',
+      name: 'checkMyIvgInfo',
+      component: ()=> import('../pages/main/components/checkMyIvgInfo.vue')
+    },
+    
+    {
+      path: '/submitTask',
+      name: 'submitTask',
+      component: ()=> import('../pages/main/components/submitTask.vue')
+    },
     // {
     //   path: '/about',
     //   name: 'about',

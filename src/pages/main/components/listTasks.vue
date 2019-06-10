@@ -15,9 +15,10 @@
       <el-table-column prop="isOpen" label="状态" align="center" :formatter="isOpenFormatter"/>
       <el-table-column label="操作" align="center">
         <template slot-scope="scope">
-          <el-button @click="editTaskInfo(scope.row)" type="text" size="small">编辑</el-button>
-          <el-button @click="closeTask(scope.row)" type="text" size="small">打开/关闭</el-button>
-          <el-button @click="deleteTask(scope.row)" type="text" size="small">删除</el-button>
+          <el-button @click="editTaskInfo(scope.row)" type="text" size="small" v-if="isAdmin">编辑</el-button>
+          <el-button @click="submitTask(scope.row)" type="text" size="small" v-if="!isAdmin">提交任务</el-button>
+          <el-button @click="closeTask(scope.row)" type="text" size="small" v-if="isAdmin">打开/关闭</el-button>
+          <el-button @click="deleteTask(scope.row)" type="text" size="small" v-if="isAdmin">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -31,7 +32,8 @@ import { closeTask } from "../../../api/api";
 export default {
   data() {
     return {
-      tasks: []
+      tasks: [],
+      isAdmin: this.$store.state.userInfo.aid == 1 ? true : false
     };
   },
   created() {
@@ -40,6 +42,14 @@ export default {
     });
   },
   methods: {
+    submitTask(row){
+      if(row.isOpen == false ){
+        this.$message({type:"error",message:"该任务已关闭"})
+        return 
+      }
+      row = JSON.stringify(row)
+      this.$router.push({path:"/submitTask",query:{taskInfo:row}})
+    },
     editTaskInfo(row) {
       this.$router.push({ name: "addTask", query: { taskInfo: row } });
     },

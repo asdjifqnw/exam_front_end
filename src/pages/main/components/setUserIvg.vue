@@ -8,7 +8,7 @@
       <el-table-column prop="duration" label="持续时间" align="center" :formatter="durationFormatter"/>
       <el-table-column prop="location" label="考试地点" align="center" :formatter="locationFormatter"/>
       <el-table-column prop="numbersOfTeacher" label="所需监考数" align="center"/>
-      <!-- <el-table-column label="已分配监考数" align="center" :formatter="countIsSetIvgFormatter"></el-table-column> -->
+      <el-table-column prop="count" label="已分配监考数" align="center"></el-table-column>
       <el-table-column label="操作" align="center">
         <template slot-scope="scope">
           <el-button @click="checkUserIvgInfo(scope.row)" type="text" size="small">查案安排信息</el-button>
@@ -32,9 +32,10 @@
       </span>
     </el-dialog>
     <el-dialog title="浏览教师信息" :visible.sync="secondDialogVisible" width="40%">
-      <el-table :data="users" style="width: 100%"> 
+      <el-table :data="users" style="width: 100%">
         <el-table-column prop="name" label="用户名" align="center"></el-table-column>
         <el-table-column prop="phone" label="电话号码" align="center"></el-table-column>
+        <el-table-column prop="count" label="已分配次数" align="center" :sortable="true"></el-table-column>
         <el-table-column label="操作" align="center">
           <template slot-scope="scope">
             <el-button @click="setUserIvg(scope.row)" type="text" size="small">添加</el-button>
@@ -81,9 +82,9 @@ export default {
     });
   },
   methods: {
-    closeSecondDialog(){
-      this.firstDialogVisible = false 
-      this.secondDialogVisible = false 
+    closeSecondDialog() {
+      this.firstDialogVisible = false;
+      this.secondDialogVisible = false;
     },
     removeUserIvg(row) {
       removeUserIvg(row.id).then(res => {
@@ -91,6 +92,13 @@ export default {
           //删除本地数组中的对象,同时更新视图
           for (let i in this.userIvgInfo) {
             if (this.userIvgInfo[i].id == row.id) {
+              //修改所有考试信息的表的count
+              for (let j in this.ivgs) {
+                if (this.ivgs[j].id == this.userIvgInfo[i].ivg.id) {
+                  this.ivgs[j].count = this.ivgs[j].count - 1;
+                  this.$forceUpdate();
+                }
+              }
               this.userIvgInfo.splice(i, 1);
               this.$forceUpdate();
             }
@@ -116,9 +124,24 @@ export default {
         .then(res => {
           this.userIvgInfo.push({ user: { id: res.user.id } });
           this.$message({ type: "success", message: "分配成功" });
+          for (let i in this.ivgs) {
+            if (this.ivgs[i].id == this.UserIvg.ivgId) {
+              this.ivgs[i].count++;
+              this.$forceUpdate();
+            }
+          }
         })
         .catch(err => {
-          this.$message({ type: "error", message: err.response.data.message.replace("T"," ") });
+          for (let i in this.ivgs) {
+            if (this.ivgs[i].id == this.UserIvg.ivgId) {
+              this.ivgs[i].count++;
+              this.$forceUpdate();
+            }
+          }
+          this.$message({
+            type: "error",
+            message: err.response.data.message.replace("T", " ")
+          });
         });
     },
     addUserIvg() {
@@ -136,16 +159,14 @@ export default {
       });
     },
     //曲线救国的方法
-    // countIsSetIvgFormatter(row) {
-    //   console.log(
-    //     countIsSetIvg(row).then(res => {
-    //       return res;
-    //     })
-    //   );
-    // },
+    countIsSetIvgFormatter(row) {
+      countIsSetIvg(row).then(res => {
+        return res;
+      });
+    },
     //下面两个也是格式化函数
     durationFormatter(row) {
-      return row.duration.substring(0,5);
+      return row.duration.substring(0, 5);
     },
     locationFormatter(row) {
       switch (row.location) {

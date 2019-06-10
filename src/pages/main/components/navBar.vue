@@ -10,7 +10,7 @@
       <el-col :lg="2" :offset="6">
         <el-dropdown class="dropdown" @command="handleCommand">
           <span class="el-dropdown-link">
-            下拉菜单
+            {{$store.state.userInfo.name}}
             <i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
