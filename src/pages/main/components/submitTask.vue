@@ -1,6 +1,7 @@
 <template>
   <div>
     <el-row>
+      <!-- <el-button style="float:right;position:relative;" @click="checkBefore" type="small">查看提交过的版本</el-button> -->
       <el-col :lg="12" :offset="4" style="text-align:center">
         <span style="font-size:3rem;color:red;" v-if="isTimeOut">您已超时,请尽快提交</span>
         <span class="smalltitle" v-else>提交任务</span>
@@ -86,13 +87,18 @@ export default {
       this.userTask.user.id = this.$store.state.userInfo.id;
       this.userTask.task.id = this.taskInfo.id;
       console.log(this.userTask);
-      submitTask(this.userTask).then(res => {
+      submitTask(this.userTask).then(() => {
         this.$message({ type: "success", message: "回复成功" });
         setTimeout(() => {
-            this.$router.push("/listTasks")
+          this.$router.push("/listTasks");
         }, 1500);
       });
-    }
+    },
+    // checkBefore() {
+    //   checkIsSubmitedTasks(this.$store.state.userInfo.id).then(res => {
+    //     console.log(res);
+    //   });
+    // }
   }
 };
 </script>

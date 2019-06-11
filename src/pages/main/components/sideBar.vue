@@ -71,7 +71,8 @@
           </template>
           <el-menu-item-group>
             <el-menu-item index="7-1" @click="listTasks">查看任务信息</el-menu-item>
-            <el-menu-item index="6-2" @click="listTasks">查看完成情况</el-menu-item>
+            <el-menu-item index="6-2" @click="checkIsSubmitedTasks">查看完成情况</el-menu-item>
+            <el-menu-item index="6-2" @click="checkOtherSubmitedTasks">查看他人完成情况</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
       </el-menu>
@@ -108,7 +109,11 @@ export default {
     checkMyIvgInfo() {
       this.$router.push("/checkMyIvgInfo");
     },
-    checkTaskInfo(){
+    checkIsSubmitedTasks(){
+      this.$router.push("/checkIsSubmitedTasks");
+    },
+    checkOtherSubmitedTasks(){
+      this.$router.push("/checkOtherSubmitedTasks");
 
     }
   }

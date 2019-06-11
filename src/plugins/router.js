@@ -52,11 +52,20 @@ export default new Router({
       name: 'checkMyIvgInfo',
       component: ()=> import('../pages/main/components/checkMyIvgInfo.vue')
     },
-    
     {
       path: '/submitTask',
       name: 'submitTask',
       component: ()=> import('../pages/main/components/submitTask.vue')
+    },
+    {
+      path: '/checkIsSubmitedTasks',
+      name: 'checkIsSubmitedTasks',
+      component: ()=> import('../pages/main/components/checkIsSubmitedTasks.vue')
+    },
+    {
+      path: '/checkOtherSubmitedTasks',
+      name: 'checkOtherSubmitedTasks',
+      component: ()=> import('../pages/main/components/checkOtherSubmitedTasks.vue')
     },
     // {
     //   path: '/about',

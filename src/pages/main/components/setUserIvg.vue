@@ -132,10 +132,12 @@ export default {
           }
         })
         .catch(err => {
-          for (let i in this.ivgs) {
-            if (this.ivgs[i].id == this.UserIvg.ivgId) {
-              this.ivgs[i].count++;
-              this.$forceUpdate();
+          if (err.response.data.message != "分配人数超过限制") {
+            for (let i in this.ivgs) {
+              if (this.ivgs[i].id == this.UserIvg.ivgId) {
+                this.ivgs[i].count++;
+                this.$forceUpdate();
+              }
             }
           }
           this.$message({
@@ -159,11 +161,11 @@ export default {
       });
     },
     //曲线救国的方法
-    countIsSetIvgFormatter(row) {
-      countIsSetIvg(row).then(res => {
-        return res;
-      });
-    },
+    // countIsSetIvgFormatter(row) {
+    //   countIsSetIvg(row).then(res => {
+    //     return res;
+    //   });
+    // },
     //下面两个也是格式化函数
     durationFormatter(row) {
       return row.duration.substring(0, 5);

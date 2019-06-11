@@ -16,6 +16,7 @@
         <el-input type="password" v-model="ruleForm2.password" auto-complete="off" placeholder="密码"></el-input>
       </el-form-item>
       <el-checkbox v-model="checked" checked class="remember">假装记住密码</el-checkbox>
+      <el-button type="mini" @click="register" style="float:right;">注册</el-button>
       <el-form-item style="width:100%;">
         <el-button
           type="primary"
@@ -25,16 +26,19 @@
         >登录</el-button>
         <!--<el-button @click.native.prevent="handleReset2">重置</el-button>-->
       </el-form-item>
+      <el-form-item></el-form-item>
     </el-form>
   </div>
 </template>
 <script>
 import { login } from "../../api/api";
+import { register } from "../../api/api";
 export default {
   data() {
     return {
       logining: false,
       ruleForm2: {
+        name: "初始化用户名",
         phone: "",
         password: ""
       },
@@ -64,8 +68,8 @@ export default {
           login(this.ruleForm2)
             .then(data => {
               this.logining = false;
-              this.$store.commit("login",data)
-              window.location.href = "./index.html"
+              this.$store.commit("login", data);
+              window.location.href = "./index.html";
             })
             .catch(() => {
               this.$message({ type: "error", message: "用户名或密码错误" });
@@ -75,6 +79,11 @@ export default {
           console.log("error submit!!");
           return false;
         }
+      });
+    },
+    register() {
+      register(this.ruleForm2).then(res => {
+        console.log(res);
       });
     }
   }
