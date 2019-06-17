@@ -13,10 +13,10 @@
       <el-table-column prop="ddl" label="截止时间" align="center" :formatter="ddlFormatter"/>
       <el-table-column prop="type" label="任务类型" align="center" :formatter="taskTypeFormatter"/>
       <el-table-column prop="isOpen" label="状态" align="center" :formatter="isOpenFormatter"/>
-      <el-table-column label="操作" align="center">
+      <el-table-column label="操作" align="center" width="300px">
         <template slot-scope="scope">
           <el-button @click="editTaskInfo(scope.row)" type="text" size="small" v-if="isAdmin">编辑</el-button>
-          <el-button @click="submitTask(scope.row)" type="text" size="small" v-if="!isAdmin">提交任务</el-button>
+          <el-button @click="submitTask(scope.row)" type="text" size="small">提交任务</el-button>
           <el-button @click="closeTask(scope.row)" type="text" size="small" v-if="isAdmin">打开/关闭</el-button>
           <el-button @click="deleteTask(scope.row)" type="text" size="small" v-if="isAdmin">删除</el-button>
         </template>
@@ -54,12 +54,7 @@ export default {
       this.$router.push({ name: "addTask", query: { taskInfo: row } });
     },
     deleteTask(row) {
-      this.$confirm(`确定删除任务${row.name}`, "提示", {
-        confirmButtonText: "删除",
-        cancelButtonText: "取消",
-        type: "warning"
-      })
-        .then(() => {
+      
           removeTask(row).then(() => {
             this.$message({
               type: "success",
@@ -69,13 +64,8 @@ export default {
               window.location.reload();
             }, 1000);
           });
-        })
-        .catch(() => {
-          this.$message({
-            type: "info",
-            message: "已取消删除"
-          });
-        });
+        
+       
     },
     closeTask(row) {
       closeTask(row)

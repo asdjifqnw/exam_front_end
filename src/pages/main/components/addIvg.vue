@@ -19,9 +19,9 @@
           </el-form-item>
           <el-form-item label="持续时间" prop="duration">
             <el-radio-group v-model="ivgInfo.duration">
-              <el-radio label="01:00:00">一小时</el-radio>
-              <el-radio label="01:30:00">一个半小时</el-radio>
-              <el-radio label="02:00:00">两小时</el-radio>
+              <el-radio label="01:00:00">1:00</el-radio>
+              <el-radio label="01:30:00">1:30</el-radio>
+              <el-radio label="02:00:00">2:00</el-radio>
             </el-radio-group>
           </el-form-item>
           <el-form-item label="考试地点" prop="location">
